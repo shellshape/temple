@@ -47,7 +47,7 @@ fn page_name_from_path(dir: &Path) -> String {
     let filename = dir.file_name().expect("file name").to_string_lossy();
 
     let name = match filename.find('_') {
-        Some(i) => &filename[i..],
+        Some(i) => &filename[i + 1..],
         None => &filename,
     };
 

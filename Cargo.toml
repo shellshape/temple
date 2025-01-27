@@ -14,6 +14,7 @@ dirs = "5"
 env_logger = "0.11.6"
 figment = { version = "0.10", features = ["json", "yaml", "toml", "env"] }
 log = "0.4.25"
+notify = "8.0.0"
 serde = { version = "1", features = ["derive"] }
 thiserror = "2.0.11"
 toml = "0.8.19"

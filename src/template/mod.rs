@@ -47,6 +47,8 @@ impl Builder {
         }
 
         for page in &pages {
+            log::debug!("Processing page '{}' ...", page.name);
+
             let parsedcontent = self.apply_template(&page.content, page, &pages)?;
 
             let outpath = page

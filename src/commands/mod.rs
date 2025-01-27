@@ -13,6 +13,7 @@ macro_rules! re_export {
 // in this module.
 re_export! {
     build
+    watch
 }
 
 pub trait Command {
