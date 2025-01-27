@@ -1,0 +1,26 @@
+[package]
+name = "temple"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+anyhow = "1"
+chrono = "0.4.39"
+clap = { version = "4", features = ["derive"] }
+dircpy = "0.3.19"
+dirs = "5"
+env_logger = "0.11.6"
+figment = { version = "0.10", features = ["json", "yaml", "toml", "env"] }
+log = "0.4.25"
+serde = { version = "1", features = ["derive"] }
+thiserror = "2.0.11"
+toml = "0.8.19"
+
+[profile.release]
+strip = true
+opt-level = "s"
+codegen-units = 1
+lto = true
+panic = "unwind"
