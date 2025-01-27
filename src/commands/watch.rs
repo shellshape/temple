@@ -5,12 +5,14 @@ use clap::Args;
 use notify::{Event, Watcher};
 use std::{path::PathBuf, sync::mpsc};
 
-/// Say hello to world or someone you want to greet
+/// Watches the given source directory for changes and rebuilds if detected
 #[derive(Args)]
 pub struct Watch {
+    /// Source directory
     #[arg(short, long, default_value = "src")]
     source: PathBuf,
 
+    /// Output directory
     #[arg(short, long, default_value = "dist")]
     output: PathBuf,
 }

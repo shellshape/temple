@@ -4,12 +4,14 @@ use anyhow::Result;
 use clap::Args;
 use std::path::PathBuf;
 
-/// Say hello to world or someone you want to greet
+/// Builds the static site from the given source
 #[derive(Args)]
 pub struct Build {
+    /// Source directory
     #[arg(short, long, default_value = "src")]
     source: PathBuf,
 
+    /// Output directory
     #[arg(short, long, default_value = "dist")]
     output: PathBuf,
 }
