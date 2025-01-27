@@ -11,7 +11,7 @@ pub enum Error {
     UnclosedQuote,
 
     #[error("missing argument: {0}")]
-    ArgumentError(&'static str),
+    MissingArgument(&'static str),
 
     #[error("unknown template name: {0}")]
     UnknownTemplate(String),
@@ -20,10 +20,10 @@ pub enum Error {
     UnclosedTemplate,
 
     #[error("io error: {0}")]
-    IOError(#[from] std::io::Error),
+    IO(#[from] std::io::Error),
 
     #[error("failed parsing config: {0}")]
-    ConfigParseError(#[from] toml::de::Error),
+    ConfigParsingFailed(#[from] toml::de::Error),
 
     #[error("unclosed config block")]
     UnclosedConfig,

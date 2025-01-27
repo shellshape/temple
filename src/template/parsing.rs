@@ -136,16 +136,19 @@ fn parse_template(content: &str) -> Result<Template> {
         return Err(Error::UnclosedQuote);
     }
 
-    split.push(&content[start..]);
+    let rest = &content[start..];
+    if !rest.is_empty() {
+        split.push(rest);
+    }
 
     let mut split = split.into_iter();
 
     match split.next().expect("should not be empty") {
         "extends" => Ok(Template::Extends {
-            name: split.next().ok_or(Error::ArgumentError("name"))?,
+            name: split.next().ok_or(Error::MissingArgument("name"))?,
         }),
         "use" => Ok(Template::Use {
-            name: split.next().ok_or(Error::ArgumentError("name"))?,
+            name: split.next().ok_or(Error::MissingArgument("name"))?,
         }),
         "pagename" => Ok(Template::PageName),
         "navitems" => Ok(Template::NavItems),
@@ -153,7 +156,7 @@ fn parse_template(content: &str) -> Result<Template> {
             format: split.next().map(|v| v.to_owned()),
         }),
         "exec" => {
-            let command = split.next().ok_or(Error::ArgumentError("command"))?;
+            let command = split.next().ok_or(Error::MissingArgument("command"))?;
             let args = split.collect();
             Ok(Template::Exec { command, args })
         }
@@ -270,7 +273,7 @@ mod test_template_parse {
         ));
         assert!(matches!(
             parse_template("extends"),
-            Err(Error::ArgumentError("name"))
+            Err(Error::MissingArgument("name"))
         ));
         assert!(matches!(
             parse_template("thisdoesnotexist"),
@@ -287,7 +290,7 @@ mod test_template_parse {
 
         assert!(matches!(
             parse_template("extends"),
-            Err(Error::ArgumentError("name"))
+            Err(Error::MissingArgument("name"))
         ));
     }
 
@@ -300,7 +303,7 @@ mod test_template_parse {
 
         assert!(matches!(
             parse_template("use"),
-            Err(Error::ArgumentError("name"))
+            Err(Error::MissingArgument("name"))
         ));
     }
 
@@ -349,7 +352,7 @@ mod test_template_parse {
 
         assert!(matches!(
             parse_template(" exec  "),
-            Err(Error::ArgumentError("command"))
+            Err(Error::MissingArgument("command"))
         ));
     }
 }

@@ -2,7 +2,7 @@ pub mod errors;
 pub mod page;
 pub mod parsing;
 
-use chrono::{DateTime, Local};
+use chrono::Local;
 use errors::{Error, Result};
 use page::Page;
 use parsing::{find_next_template, find_template, Template};
@@ -14,7 +14,6 @@ use std::{
 };
 
 pub struct Builder {
-    source_dir: PathBuf,
     public_dir: PathBuf,
     pages_dir: PathBuf,
     templates_dir: PathBuf,
@@ -29,7 +28,6 @@ impl Builder {
             public_dir: source_dir.join("public"),
             pages_dir: source_dir.join("pages"),
             templates_dir: source_dir.join("templates"),
-            source_dir,
             target_dir: target_dir.into(),
         }
     }
