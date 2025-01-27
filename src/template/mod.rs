@@ -39,12 +39,14 @@ impl Builder {
 
         dircpy::copy_dir(&self.public_dir, self.target_dir.join("public"))?;
 
-        let mut pages = vec![];
-        for entry in fs::read_dir(&self.pages_dir)? {
-            let entry = entry?;
-            let page = Page::read(entry.path())?;
-            pages.push(page);
-        }
+        let mut entries =
+            fs::read_dir(&self.pages_dir)?.collect::<std::result::Result<Vec<_>, _>>()?;
+        entries.sort_by_key(|e| e.file_name());
+
+        let pages = entries
+            .iter()
+            .map(|entry| Page::read(entry.path()))
+            .collect::<std::result::Result<Vec<_>, _>>()?;
 
         for page in &pages {
             log::debug!("Processing page '{}' ...", page.name);
