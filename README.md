@@ -2,11 +2,11 @@
 
 A **very** simple static web page generator to build simple static web pages without the burden of code duplication.
 
-> **Disclaimer**
-> 
-> This tool is primarily built generating simple static websites like [my personal website](https://github.com/zekroTJA/new.zekro.de). It deliberately does not implement more complex templating features like logic operators (if, else, ...) or loops (for, foreach, ...). Also there is no pre-processing for stuff like SCSS, TypeScript or whatever. But you can build wrapper scripts that do that for you, of course. 
-> 
-> If you are looking for something more sophisticated, please check out real static site generators like [Zola](https://www.getzola.org/), [Hugo](https://gohugo.io/), [Nuxt](https://nuxt.com/), [Astro](https://jamstack.org/) or [any other of the hundreds of choices](https://jamstack.org/generators/).
+**Disclaimer**
+
+This tool is primarily built for generating simple static websites like [my personal website](https://github.com/zekroTJA/new.zekro.de). It deliberately does not implement more complex templating features like logic operators (if, else, ...) or loops (for, foreach, ...). Also there is no pre-processing for stuff like SCSS, TypeScript or whatever. But you can build wrapper scripts that do that for you, of course. 
+
+If you are looking for something more sophisticated, please check out real static site generators like [Zola](https://www.getzola.org/), [Hugo](https://gohugo.io/), [Nuxt](https://nuxt.com/), [Astro](https://jamstack.org/) or [any other of the hundreds of choices](https://jamstack.org/generators/).
 
 ## Usage
 
