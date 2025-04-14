@@ -2,7 +2,7 @@ use super::Command;
 use crate::template::Builder;
 use anyhow::Result;
 use clap::Args;
-use notify::{Event, Watcher};
+use notify::{Event, EventKind, Watcher};
 use std::{path::PathBuf, sync::mpsc};
 
 /// Watches the given source directory for changes and rebuilds if detected
@@ -32,11 +32,17 @@ impl Command for Watch {
 
         for res in rx {
             match res {
-                Ok(e) => {
+                Ok(e)
+                    if matches!(
+                        e.kind,
+                        EventKind::Create(_) | EventKind::Modify(_) | EventKind::Remove(_)
+                    ) =>
+                {
                     log::info!("Change detected {:?}: {:?}", e.kind, e.paths);
                     builder.build()?;
                 }
                 Err(_) => todo!(),
+                _ => {}
             }
         }
 
