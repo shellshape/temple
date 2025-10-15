@@ -1,4 +1,5 @@
 mod commands;
+mod server;
 mod template;
 
 use anyhow::Result;
