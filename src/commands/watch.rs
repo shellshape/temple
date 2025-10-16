@@ -24,6 +24,10 @@ pub struct Watch {
     /// Address to bind dev server to
     #[arg(short, long, default_value = "127.0.0.1:8081")]
     address: String,
+
+    /// Prevent opening the browser with the live server page
+    #[arg(long)]
+    no_open: bool,
 }
 
 impl Command for Watch {
@@ -40,7 +44,9 @@ impl Command for Watch {
         let (tx, _) = broadcast::channel(1);
 
         {
-            log::info!("Running internal dev server on http://{}", &self.address);
+            let url = format!("http://{}", &self.address);
+            log::info!("Running internal dev server on {url}");
+
             let address = self.address.to_owned();
             let output_path = self.output.to_owned();
             let tx = tx.clone();
@@ -49,6 +55,10 @@ impl Command for Watch {
                 rt.block_on(run_dev_server(address, output_path, tx))
                     .expect("run dev server");
             });
+
+            if !self.no_open {
+                webbrowser::open(&url)?;
+            }
         }
 
         watch_handler(&self.source, rx, &tx, &builder);
