@@ -86,7 +86,7 @@ fn watch_handler(
                 match builder.build() {
                     Err(err) => log::error!("build failed: {err}"),
                     Ok(_) => {
-                        tx.send(()).expect("send reload message");
+                        tx.send(()).ok();
                     }
                 }
             }
