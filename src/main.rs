@@ -5,7 +5,8 @@ mod template;
 use anyhow::Result;
 use clap::{command, Parser};
 use commands::*;
-use env_logger::{fmt::style, Env};
+use env_logger::fmt::style;
+use env_logger::Env;
 use std::io::Write;
 
 #[derive(Parser)]

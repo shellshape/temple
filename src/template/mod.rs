@@ -6,12 +6,10 @@ use chrono::Local;
 use errors::{Error, Result};
 use page::Page;
 use parsing::{find_next_template, find_template, Template};
-use std::{
-    fs::{self, File},
-    io::{Read, Write},
-    path::PathBuf,
-    process::Command,
-};
+use std::fs::{self, File};
+use std::io::{Read, Write};
+use std::path::PathBuf;
+use std::process::Command;
 
 pub struct Builder {
     public_dir: PathBuf,
@@ -102,11 +100,7 @@ impl Builder {
                             .as_ref()
                             .and_then(|c| c.path.clone())
                             .unwrap_or_else(|| format!("/{}", p.name));
-                        let active = if p.name == page.name {
-                            r#" class="active""#
-                        } else {
-                            ""
-                        };
+                        let active = if p.name == page.name { r#" class="active""# } else { "" };
                         let name = &p.name;
                         navitems.push(format!(r#"<a href="{path}"{active}>{name}</a>"#));
                     }

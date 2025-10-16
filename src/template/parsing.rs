@@ -60,8 +60,9 @@ pub fn find_next_template(content: &str) -> Result<Option<TemplateInstance>> {
     };
 
     // TODO: This will cause problems when someone want to use }} in quoted template
-    // args, which could be expected to work but will break here. Maybe this could be
-    // fixed some time later, but currently this would make stuff too complex for now.
+    // args, which could be expected to work but will break here. Maybe this could
+    // be fixed some time later, but currently this would make stuff too complex
+    // for now.
     let Some(end_pos_rel) = content[start_pos..].find("}}") else {
         return Err(Error::UnclosedTemplate);
     };

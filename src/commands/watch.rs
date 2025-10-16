@@ -1,13 +1,12 @@
 use super::Command;
-use crate::{server::run_dev_server, template::Builder};
+use crate::server::run_dev_server;
+use crate::template::Builder;
 use anyhow::Result;
 use clap::Args;
 use notify::{Event, EventKind, Watcher};
-use std::{
-    path::{Path, PathBuf},
-    sync::mpsc::{self, Receiver},
-    thread,
-};
+use std::path::{Path, PathBuf};
+use std::sync::mpsc::{self, Receiver};
+use std::thread;
 use tokio::sync::broadcast;
 
 /// Watches the given source directory for changes and rebuilds if detected

@@ -1,6 +1,8 @@
 use super::errors::{Error, Result};
 use serde::Deserialize;
-use std::{fs::File, io::Read, path::Path};
+use std::fs::File;
+use std::io::Read;
+use std::path::Path;
 
 #[derive(Debug)]
 pub struct Page {

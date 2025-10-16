@@ -1,8 +1,3 @@
-use std::convert::Infallible;
-use std::path::PathBuf;
-use std::sync::Arc;
-use std::time::Duration;
-
 use anyhow::Result;
 use axum::body::Body;
 use axum::extract::{OriginalUri, State};
@@ -11,6 +6,10 @@ use axum::response::sse::{Event, KeepAlive};
 use axum::response::{IntoResponse, Sse};
 use axum::routing::get;
 use futures_util::stream::Stream;
+use std::convert::Infallible;
+use std::path::PathBuf;
+use std::sync::Arc;
+use std::time::Duration;
 use tokio::fs;
 use tokio::net::ToSocketAddrs;
 use tokio::sync::broadcast;
