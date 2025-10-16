@@ -80,8 +80,8 @@ async fn serve_handler(
 ) -> impl IntoResponse {
     let path_str = uri.path();
 
-    let mut file_path = PathBuf::from(state.asset_dir);
-    file_path.push(&path_str.trim_start_matches('/'));
+    let mut file_path = state.asset_dir;
+    file_path.push(path_str.trim_start_matches('/'));
 
     if file_path.is_dir() {
         file_path.push("index.html");

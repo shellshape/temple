@@ -54,7 +54,7 @@ impl TemplateInstance<'_> {
     }
 }
 
-pub fn find_next_template(content: &str) -> Result<Option<TemplateInstance>> {
+pub fn find_next_template(content: &str) -> Result<Option<TemplateInstance<'_>>> {
     let Some(start_pos) = content.find("{{") else {
         return Ok(None);
     };
@@ -98,7 +98,7 @@ pub fn find_template<'a>(
     Ok(None)
 }
 
-fn parse_template(content: &str) -> Result<Template> {
+fn parse_template(content: &str) -> Result<Template<'_>> {
     let content = content.trim();
     if content.is_empty() {
         return Err(Error::Empty);
